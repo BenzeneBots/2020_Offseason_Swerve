@@ -1,10 +1,10 @@
-package frc.dirtyswerve.module;
+package frc.systems.dirtyswerve.lowerlevel.module;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import frc.dirtyswerve.util.SwerveUtil;
+import frc.systems.dirtyswerve.toplevel.config.SwerveConfig;
 import frc.util.FileUtil;
 import java.io.File;
 import frc.util.BbSparkMax;
@@ -34,11 +34,11 @@ public class SwerveModuleLowerLevel{
     public SwerveModuleLowerLevel(String ModuleName,int throttleID, int azimuthID){
         throttleMotor = new BbSparkMax(throttleID, MotorType.kBrushless);
         throttleMotor.setEncPosition(0);
-        SwerveUtil.THROTTLE_PID.assign(throttleMotor);
+        SwerveConfig.THROTTLE_PID.assign(throttleMotor);
         throttleMotor.setOpenLoopRampRate(1.0);
         
         azimuthMotor = new WPI_TalonSRX(azimuthID);
-        SwerveUtil.AZIMUTH_PID.assign(0, azimuthMotor);
+        SwerveConfig.AZIMUTH_PID.assign(0, azimuthMotor);
         azimuthMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute);
         azimuthMotor.configFeedbackNotContinuous(false,0);
         azimuthMotor.setNeutralMode(NeutralMode.Brake);
@@ -63,7 +63,7 @@ public class SwerveModuleLowerLevel{
      * Gets the current position of the swerve module in degrees and writes this number to a file as the offset
      */
     public void resetOffset(){
-        azimuthOffset = -azimuthMotor.getSelectedSensorPosition()/SwerveUtil.AZIMUTH_TICKS_PER_DEGREE;
+        azimuthOffset = -azimuthMotor.getSelectedSensorPosition()/SwerveConfig.AZIMUTH_TICKS_PER_DEGREE;
         FileUtil.writeObjectToFile(offsetFile, azimuthOffset);
     }
 
@@ -72,7 +72,7 @@ public class SwerveModuleLowerLevel{
      * @return Sensor value in degrees
      */
     public double getRawAzimuth(){
-        return azimuthMotor.getSelectedSensorPosition()/SwerveUtil.AZIMUTH_TICKS_PER_DEGREE;
+        return azimuthMotor.getSelectedSensorPosition()/SwerveConfig.AZIMUTH_TICKS_PER_DEGREE;
     }
 
     /**
@@ -111,7 +111,7 @@ public class SwerveModuleLowerLevel{
      * @param azimuth target azimuth in degrees
      */
     public void setRawAzimuth(double azimuth){
-        azimuthMotor.set(ControlMode.Position,(azimuth+azimuthOffset)*SwerveUtil.AZIMUTH_TICKS_PER_DEGREE);
+        azimuthMotor.set(ControlMode.Position,(azimuth+azimuthOffset)*SwerveConfig.AZIMUTH_TICKS_PER_DEGREE);
     }
 
     /**

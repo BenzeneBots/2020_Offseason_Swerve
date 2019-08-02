@@ -1,8 +1,8 @@
-package frc.dirtyswerve.util;
+package frc.systems.dirtyswerve.toplevel.config;
 
 import frc.util.PID_Config;
 
-public final class SwerveUtil{
+public final class SwerveConfig{
     /**
      * Length and Width of the Chassis (any unit)
      * Should be measured from where wheels make contact with the ground
@@ -29,17 +29,17 @@ public final class SwerveUtil{
 
     public static final int GYRO_ID = 11;
 
-    public static final int FRONT_RIGHT_THROTTLE = 41;
-    public static final int FRONT_RIGHT_AZIMUTH = 31;
+    public static final int FRONT_RIGHT_THROTTLE_ID = 41;
+    public static final int FRONT_RIGHT_AZIMUTH_ID = 31;
 
-    public static final int FRONT_LEFT_THROTTLE = 42;
-    public static final int FRONT_LEFT_AZIMUTH = 32;
+    public static final int FRONT_LEFT_THROTTLE_ID = 42;
+    public static final int FRONT_LEFT_AZIMUTH_ID = 32;
 
-    public static final int REAR_RIGHT_THROTTLE = 43;
-    public static final int REAR_RIGHT_AZIMUTH = 33;
+    public static final int REAR_RIGHT_THROTTLE_ID = 43;
+    public static final int REAR_RIGHT_AZIMUTH_ID = 33;
 
-    public static final int REAR_LEFT_THROTTLE = 44;
-    public static final int REAR_LEFT_AZIMUTH = 34;
+    public static final int REAR_LEFT_THROTTLE_ID = 44;
+    public static final int REAR_LEFT_AZIMUTH_ID = 34;
 
     /**
      * PID Values for swerve

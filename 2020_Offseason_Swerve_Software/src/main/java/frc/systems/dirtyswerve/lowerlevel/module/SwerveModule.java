@@ -1,9 +1,9 @@
-package frc.dirtyswerve.module;
+package frc.systems.dirtyswerve.lowerlevel.module;
 
 import com.revrobotics.ControlType;
 
-import frc.dirtyswerve.util.SwerveUtil;
-import frc.dirtyswerve.util.SwerveUtil.ThrottleType;
+import frc.systems.dirtyswerve.toplevel.config.SwerveConfig;
+import frc.systems.dirtyswerve.toplevel.config.SwerveConfig.ThrottleType;;
 
 public class SwerveModule extends SwerveModuleLowerLevel{
 
@@ -31,7 +31,7 @@ public class SwerveModule extends SwerveModuleLowerLevel{
         if(invertThrottle){
             velocity*=-1;
         }
-       throttleMotor.setPIDReference(velocity/SwerveUtil.THOTTLE_TICKS_PER_INCH,ControlType.kVelocity);
+       throttleMotor.setPIDReference(velocity/SwerveConfig.THOTTLE_TICKS_PER_INCH,ControlType.kVelocity);
     }
 
     /**
@@ -68,7 +68,7 @@ public class SwerveModule extends SwerveModuleLowerLevel{
     public void set(double azimuth,double throttle){
         setAzimuth(azimuth);
 
-        if(SwerveUtil.SELECTED_THROTTLE_TYPE == ThrottleType.VelocityMode){
+        if(SwerveConfig.SELECTED_THROTTLE_TYPE == ThrottleType.VelocityMode){
             setThrottleVelocity(throttle);
         }else{
             setThrottleOutput(throttle);

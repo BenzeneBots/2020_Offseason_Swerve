@@ -9,7 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-import frc.dirtyswerve.DirtySwerve;
+import frc.systems.dirtyswerve.toplevel.DirtySwerve;
 
 public class Robot extends TimedRobot {
   
